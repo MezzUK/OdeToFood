@@ -1,0 +1,49 @@
+﻿@page "{restaurantId:int}"
+
+@model OdeToFood.Pages.Restaurants.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>@Model.Restaurant.Name</h2>
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+<div>
+    Id: @Model.Restaurant.Id
+</div>
+<div>
+    Location: @Model.Restaurant.Location
+</div>
+<div>
+    Cuisine: @Model.Restaurant.Cuisine
+</div>
+
+<div id="map" style="height: 500px; width: 50%;"></div>
+<script>
+    function initMap() {
+        var myLatlng = new google.maps.LatLng(52.281273, -1.560737);
+        var mapOptions = {
+            zoom: 13,
+            center: myLatlng
+        }
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            title: "Hello World!"
+        });
+
+        // To add the marker to the map, call setMap();
+        marker.setMap(map);
+    }
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCy449zBHIDY9-TKGLonv6pzKTpV57U5UU&callback=initMap">
+</script>
+
+
+<a asp-page="./List" class=" btn btn-default">All Restaurants</a>
