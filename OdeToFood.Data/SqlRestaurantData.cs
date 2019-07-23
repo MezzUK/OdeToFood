@@ -51,6 +51,12 @@ namespace OdeToFood.Data
             return restaurant;
         }
 
+        public int GetCountOfRestaurants()
+        {
+            // TODO Might want to cache something like this so it doesn't get called all the time
+            return _db.Restaurants.Count();
+        }
+
         public int Commit()
         {
             return _db.SaveChanges();
